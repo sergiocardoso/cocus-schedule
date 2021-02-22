@@ -3,15 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller {
-    public function list(){}
     
-    /** Schedule - New */
+    /**
+     * Schedule - get all
+     */
+    public function list(){
+        $user = User::find(Auth::id());
+        $schedules = $user->schedules();
+
+         return response()->json([
+                'success' => true, 
+                'data' => $schedules,
+                'user' => $user,
+        ], 200);
+    }
+    
+    /**
+     * Schedule
+     * New 
+     */
     public function new(Request $request){
         $rules = [
             'title'       => 'required',
@@ -86,23 +103,29 @@ class ScheduleController extends Controller {
     /**
      * Delete Schedule Item - soft delete
      */
-    public function delete(Request $request, $id){
+    public function delete($id){
         $schedule = Schedule::find($id);
 
-        try {
-            $schedule->delete();
-            return response()->json([
-                'status_code' => 200,
-                'message' => 'Schedule deleted'
-            ]);
-        }
-        catch (\Exception $error){
-             return response()->json([
-                'status_code' => 401,
-                'message' => 'Error on delete',
-                'error' => $error,
-            ]);
+        if($schedule){
+            try {
+                $schedule->delete();
+                return response()->json([
+                    'status_code' => 200,
+                    'message' => 'Schedule deleted'
+                ]);
+            }
+            catch (\Exception $error){
+                return response()->json([
+                    'status_code' => 401,
+                    'message' => 'Error on delete',
+                    'error' => $error,
+                ]);
+            }
         }
 
+        return response()->json([
+            'status_code' => 400,
+            'message' => 'Schedule not found',
+        ]);
     }
 }

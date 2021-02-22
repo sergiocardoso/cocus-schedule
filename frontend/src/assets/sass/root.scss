@@ -1,0 +1,13 @@
+@import "./variables";
+@import "./../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./inputs";
+@import "./design";
+@import "./mobile";
+
+body {
+  background: whitesmoke;
+}
+
+#app {
+  height: 100% !important;
+}

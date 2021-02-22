@@ -56,19 +56,28 @@ class UserController extends Controller {
      */
     public function hide(){
         $user = User::find(Auth::id());
-        try {
-            $user->delete();
-            return response()->json([
-                'status_code' => 200,
-                'message' => 'User deleted'
-            ]);
+
+        if($user){
+            try {
+                $user->delete();
+                return response()->json([
+                    'status_code' => 200,
+                    'message' => 'User deleted'
+                ]);
+            }
+            catch (\Exception $error){
+                return response()->json([
+                    'status_code' => 401,
+                    'message' => 'Error on delete',
+                    'error' => $error,
+                ]);
+            }
         }
-        catch (\Exception $error){
-             return response()->json([
-                'status_code' => 401,
-                'message' => 'Error on delete',
-                'error' => $error,
-            ]);
-        }
+
+        return response()->json([
+            'status_code' => 400,
+            'message' => 'User not found',
+        ]);
+        
     }
 }

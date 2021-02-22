@@ -1,0 +1,34 @@
+input {
+  border: none;
+  border-radius: 5px;
+  background: white;
+  padding: 8px;
+  border-radius: 9px;
+  margin: 5px 5px 5px 0;
+  border: 3px solid white;
+}
+
+input:focus {
+  outline: none;
+  border: 3px solid #b377f1;
+}
+
+button{
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.input-group-text{
+  background: #5504a0;
+  border: none;
+  margin: 5px 0px 0px 0px;
+}
+
+.btn-margin{
+  margin: 5px 0px 0px 0px;
+  font-weight: bold;
+}
+
+.text-white{
+  color:white;
+}
