@@ -37,6 +37,13 @@
         >
           Enter on Cocus
         </button>
+
+        <button
+          class="btn btn-secondary btn-large btn-margin"
+          @click="signin()"
+        >
+          Sign In
+        </button>
       </form>
     </div>
   </div>
@@ -66,6 +73,10 @@ export default class Home extends Vue {
 
   get isValidForm(): boolean {
     return this.user.email && this.user.password ? false : true;
+  }
+
+  signin(): void {
+    this.$router.push('/signin');
   }
 
   submit(): void {

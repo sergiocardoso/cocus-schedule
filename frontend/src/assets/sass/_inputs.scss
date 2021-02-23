@@ -32,3 +32,13 @@ button{
 .text-white{
   color:white;
 }
+
+.btn-menu-schedule svg{
+  color:#00000010;
+  font-size: 2rem;
+  padding-top:5px;
+}
+
+.btn-menu-schedule svg:hover{
+  color: red;
+}

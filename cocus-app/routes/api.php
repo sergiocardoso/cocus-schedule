@@ -16,7 +16,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 Route::post('login', [AuthController::class, 'login']);
 Route::post('signin', [AuthController::class, 'signin']);
-Route::get('logout', [AuthController::class, 'logout']);
+
 
 /**
  * User Routes
@@ -27,6 +27,7 @@ Route::prefix('user')
         Route::get('get', [UserController::class, 'get']);
         Route::put('edit', [UserController::class, 'edit']);
         Route::delete('delete', [UserController::class, 'hide']);
+        Route::get('logout', [AuthController::class, 'logout']);
     });
 
 

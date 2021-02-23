@@ -1,3 +1,4 @@
+@import "./variables";
 
 .cocus-header{
     height: 35%;
@@ -40,4 +41,47 @@
 
 .btn-menu svg:hover{
     color: #c46cf7;
+}
+
+.tip{
+    text-align: center;
+    color: #0000001a;
+    font-size: 2rem;
+    font-weight: 800;
+    max-width: 50%;
+    margin: 5% auto;
+}
+
+.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{
+    background: $indigo !important;
+}
+
+.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{
+    background: #6610f220 !important;
+}
+
+.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{
+    background: #6610f250 !important;
+}
+
+.swal2-styled.swal2-confirm{
+    background:#6610f2 !important;
+}
+
+.swal2-progress-steps .swal2-progress-step{
+    background: #6610f2 !important;
+}
+
+.swal2-progress-steps .swal2-progress-step-line{
+    background: #6610f2 !important;
+}
+
+.swal2-file:focus, .swal2-input:focus, .swal2-textarea:focus{
+    border:2px solid #6610f2 !important;
+    box-shadow: 0 0 0 3px #6610f290 !important;
+}
+
+.btn-primary.disabled, .btn-primary:disabled{
+    background:#6610f240;
+    border: none;
 }

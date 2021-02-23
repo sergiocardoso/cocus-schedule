@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false;
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faCalendarAlt, faPlus, faSignOutAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

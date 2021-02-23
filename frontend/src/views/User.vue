@@ -1,14 +1,10 @@
 <template>
-  <div class="container-fluid h-100 body">
-    <div
-      class="row justify-content-center justify-content-sm-center align-items-sm-center align-items-start h-100 page-base"
-    >
-      <div class="col-12 col-sm-4">
-        <Logo />
-      </div>
-
-      <form class="col-12 col-sm-8 col-md-4 text-sm-left" @submit="submit">
-        <h4 class="text-white">New Account</h4>
+  <div>
+    <Header />
+    <div class="container">
+      <div class="row justify-content-center" style="margin-top:5%;">
+          <form class="col-12 col-sm-8 col-md-4 text-sm-left" @submit="submit">
+        <h4 class="text-black">Edit your data information</h4>
         <div class="input-group input-group-lg">
           <input
             v-model="user.name"
@@ -54,25 +50,28 @@
           class="btn btn-primary btn-large btn-margin"
           :disabled="isValidForm"
         >
-          Sing In Cocus Schedule
+          Update Information
         </button>
       </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import "vue-toast-notification/dist/theme-sugar.css";
-
 import Logo from "./../components/Logo.vue";
-import { onSingup } from "./../services/Auth";
+import Header from "./../components/Header.vue";
+import { onSingup, onUpdate } from "./../services/Auth";
 
 @Component({
-  components: {Logo},
+  components: {
+    Logo,
+    Header,
+  },
 })
-export default class SignIn extends Vue {
-  user  = {
+export default class UserPage extends Vue {
+    user  = {
     name: "",
     email: "",
     password: "",
@@ -80,6 +79,16 @@ export default class SignIn extends Vue {
   };
 
   valid = false;
+
+  mounted() {
+      const data = localStorage.getItem('LoggedUser');
+      const dataParse = JSON.parse(data || "");
+
+      if(dataParse){
+          this.user.name = dataParse.user.name;
+          this.user.email = dataParse.user.email;
+      }
+  }
 
   get isValidForm(): boolean {
     return  this.user.email && 
@@ -97,10 +106,9 @@ export default class SignIn extends Vue {
         return;
     }
 
-    onSingup(this.user)
+    onUpdate(this.user)
       .then(() => {
-        Vue.$toast.open("Registration successfully Complete");
-        this.$router.push('/login');
+        Vue.$toast.open("Informações atualizadas com sucesso");
       })
       .catch(() => {
         this.user.email = "";
@@ -117,16 +125,8 @@ export default class SignIn extends Vue {
 }
 </script>
 
-<style lang="scss">
-@import "./../assets/sass/variables";
-@import "./../assets/sass/animations";
-
-.body {
-  background: linear-gradient(232deg, #001af2, #a300ff, #0081ff) !important;
-  background-size: 600% 600% !important;
-  -webkit-animation: AnimationName 2s ease infinite !important;
-  -moz-animation: AnimationName 2s ease infinite !important;
-  -o-animation: AnimationName 2s ease infinite !important;
-  animation: AnimationName 2s ease infinite !important;
+<style lang="scss" >
+#app {
+  background: whitesmoke;
 }
 </style>

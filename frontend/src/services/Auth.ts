@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from './Schedule';
 
 axios.defaults.baseURL = "http://localhost/api/";
 axios.defaults.withCredentials = true;
@@ -7,11 +8,25 @@ axios.defaults.headers.common = {
   "Content-Type": "application/json",
 };
 
-const headers = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('LoggedUser') || "").token
+const userJSON = localStorage.getItem('LoggedUser');
+let headers = {};
+
+if(userJSON){
+  headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: 'Bearer ' + JSON.parse(userJSON).token
+  }
 }
+
+else {
+  headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  }
+}
+
+
 
 import IUser from "@/model/User.interface";
 
@@ -63,6 +78,34 @@ export const onSingup = (user: any): Promise<any> =>
       .catch((error) => reject(error));
   });
 };
+
+/**
+ * Logout
+ */
+export const onLogout = (): Promise<any> =>
+{
+  return new Promise((resolve, reject) => {
+    const headers = getToken();
+    axios.get('user/logout', {headers})
+    .then(response => resolve(response))
+    .catch(error => reject(error));
+  })
+}
+
+/**
+ * Update User data information
+ * @param data User Interface
+ */
+export const onUpdate = (data: IUser): Promise<any> => 
+{
+  return new Promise((resolve, reject) => {
+    const headers = getToken();
+
+    axios.put('user/edit', {name: data.name, email: data.email, password: data.password}, {headers})
+    .then(response => resolve(response))
+    .catch(error => reject(error));
+  })
+}
 
 
 /**
