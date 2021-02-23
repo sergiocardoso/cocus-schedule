@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function schedules() {
-        return $this->hasMany(Schedule::class);
+    public function getSchedule() {
+        return $this->hasMany(Schedule::class, 'user_id', 'id');
     }
 }

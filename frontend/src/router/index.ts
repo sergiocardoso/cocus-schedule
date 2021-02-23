@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 
-// import { isAuthenticate } from './../services/Auth';
+import { isLogged } from './../services/Auth';
 
 // pages
 import Login from "./../views/Login.vue";
@@ -13,6 +13,10 @@ Vue.use(VueRouter);
 function guardMyRoute(to: any, from: any, next: any) {
   const isAuthenticate = localStorage.getItem("LoggedUser") ? true : false;
   console.log("entrou aqui", isAuthenticate);
+
+  isLogged()
+  .catch(() => next('/login'));
+
   if (isAuthenticate) {
     next();
   } else {

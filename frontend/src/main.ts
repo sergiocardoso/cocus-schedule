@@ -6,13 +6,14 @@ import store from './store'
 Vue.config.productionTip = false;
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faCalendarAlt, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faCalendarAlt, faPlus, faSignOutAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faUser)
 library.add(faCalendarAlt)
 library.add(faPlus)
 library.add(faSignOutAlt)
+library.add(faTrashAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false

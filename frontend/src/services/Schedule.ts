@@ -27,9 +27,7 @@ export const list = (): Promise<ISchedule[]> => {
         }
 
         axios.get('schedule/list', {headers})
-        .then(response => {
-            console.log('ver --> schedule', response);
-        })
-        .catch(error => reject(error));
+            .then(response => resolve(response.data.data))
+            .catch(error => reject(error));
     })
 }

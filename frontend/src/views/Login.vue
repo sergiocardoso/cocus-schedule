@@ -1,5 +1,5 @@
 <template>
-  <div class="container h-100">
+  <div class="container-fluid h-100 body">
     <div
       class="row justify-content-center justify-content-sm-center align-items-sm-center align-items-start h-100 page-base"
     >
@@ -70,9 +70,9 @@ export default class Home extends Vue {
 
   submit(): void {
     onLogin(this.user)
-      .then((response) => {
+      .then(() => {
         Vue.$toast.success("Data OK =)");
-        this.$router.push('/home');
+        this.$router.push('/');
       })
       .catch(() => {
         this.user.email = "";
@@ -90,12 +90,12 @@ export default class Home extends Vue {
 @import "./../assets/sass/variables";
 @import "./../assets/sass/animations";
 
-#app {
-  background: linear-gradient(232deg, #001af2, #a300ff, #0081ff);
-  background-size: 600% 600%;
-  -webkit-animation: AnimationName 2s ease infinite;
-  -moz-animation: AnimationName 2s ease infinite;
-  -o-animation: AnimationName 2s ease infinite;
-  animation: AnimationName 2s ease infinite;
+.body {
+  background: linear-gradient(232deg, #001af2, #a300ff, #0081ff) !important;
+  background-size: 600% 600% !important;
+  -webkit-animation: AnimationName 2s ease infinite !important;
+  -moz-animation: AnimationName 2s ease infinite !important;
+  -o-animation: AnimationName 2s ease infinite !important;
+  animation: AnimationName 2s ease infinite !important;
 }
 </style>

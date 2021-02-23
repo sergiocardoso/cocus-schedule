@@ -1,19 +1,27 @@
-import IUser from "@/model/User.interface";
 import axios from "axios";
-import { nextTick } from "vue/types/umd";
 
 axios.defaults.baseURL = "http://localhost/api/";
+axios.defaults.withCredentials = true;
 axios.defaults.headers.common = {
   Accept: "application/json",
   "Content-Type": "application/json",
 };
+
+const headers = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+  Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('LoggedUser') || "").token
+}
+
+import IUser from "@/model/User.interface";
 
 /**
  * Login on API -> Larevel Sanctum
  * @param email User email
  * @param password User password
  */
-export const onLogin = (user: IUser): Promise<any> => {
+export const onLogin = (user: IUser): Promise<any> => 
+{
   return new Promise((resolve, reject) => {
     axios
       .post("login", { email: user.email, password: user.password })
@@ -38,7 +46,8 @@ export const onLogin = (user: IUser): Promise<any> => {
  * Sign In
  * @param user User object
  */
-export const onSingup = (user: any): Promise<any> => {
+export const onSingup = (user: any): Promise<any> => 
+{
   return new Promise((resolve, reject) => {
     axios
       .post(
@@ -54,3 +63,15 @@ export const onSingup = (user: any): Promise<any> => {
       .catch((error) => reject(error));
   });
 };
+
+
+/**
+ * Is Logged ?
+ */
+export const isLogged = (): Promise<boolean | any> => {
+  return new Promise((resolve, reject) => {
+    axios.get('user/get', {headers})
+    .then(response => resolve(response))
+    .catch(error => reject(error));
+  })
+}

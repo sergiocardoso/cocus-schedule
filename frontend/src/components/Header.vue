@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid h-100">
+  <div class="container-fluid">
     <div
       class="row justify-content-center align-items-center cocus-header"
       style="height: 100px"

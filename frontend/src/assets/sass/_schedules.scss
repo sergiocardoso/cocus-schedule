@@ -1,0 +1,64 @@
+.schedules {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+.schedules li {
+  margin: 1em;
+}
+.schedules li .schedule_base {
+    background: linear-gradient(
+70deg
+, #ffffff 100px, #e8e8e8 1%, #7375fb38);
+    margin: 0 10%;
+    padding: 1em;
+    box-shadow: 0px 2px 0px #02010429;
+    border-radius: 100px;
+    padding-left: 18px;
+    
+}
+.schedules li .schedule_date {
+    text-align: left;
+    background: linear-gradient(to bottom, #ff0000db, #9571f9);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top: 0px;
+    box-shadow: inset 1px 9px 0px #0909092b;
+}
+
+.schedules li .schedule_date .day {
+  font-size: 1.7rem;
+  padding-top: 33%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.schedules li .schedule_date .week {
+    font-size: 0.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #0f1756;
+    width: 64px;
+    position: relative;
+    top: -10%;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    left: -55%
+}
+.schedules li .schedule_base .schedule_text {
+    margin-left: 20px;
+    color: black;
+}
+.schedules li .schedule_base .schedule_text .title {
+    text-transform: uppercase;
+    font-weight: 800;
+}
+.schedules li .schedule_base .schedule_text .description {
+    font-weight: 300;
+    font-size: 1em;
+}
