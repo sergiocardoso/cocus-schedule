@@ -7,7 +7,7 @@
       </div>
 
       <ul class="schedules">
-        <li v-for="(schedule, k) in schedules" :key="k" class="animate__animated animate__bounce">
+        <li v-for="(schedule, k) in schedules" :key="k" class="schecule-animated">
           <div class="row justify-content-between schedule_base">
             <div class="col-sm-auto col-4 schedule_date" v-if="schedule.dateFormat">
               <div class="day">{{ schedule.dateFormat.getDate() + 1}}</div>
